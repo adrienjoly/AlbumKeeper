@@ -1,27 +1,26 @@
 AlbumsColl = new Meteor.Collection("albums");
+
+Router.map(function() {
+  this.route('home', {path: '/'})
+  this.route('add');
+});
  
-Template.albums.items = function(){
-    return AlbumsColl.find({},{sort:{'t':-1}});
-};
+// - - - - - - - -
+// Album
 
 Template.album.events({
   'click a.link': function () {
     console.log("play", this._id);
-    //Session.set("selected_question", this._id);
-    //if(Meteor.userId()){
-      //var questionId = Session.get('selected_question');
-      Meteor.call("playAlbum", this._id);
-    //}
+    Meteor.call("playAlbum", this._id);
   },
   'click a.remove': function () {
     console.log("remove", this._id);
-    //Session.set("selected_question", this._id);
-    //if(Meteor.userId()){
-      //var questionId = Session.get('selected_question');
-      Meteor.call("removeAlbum", this._id);
-    //}
+    Meteor.call("removeAlbum", this._id);
   },
 });
+
+// - - - - - - - -
+// Add Album screen
 
 Template.addAlbum.events({
     'click input.submit' : function(event){
@@ -33,3 +32,14 @@ Template.addAlbum.events({
         document.getElementById("albumUrl").value = "";
     }
 });
+
+Template.addAlbum.params = function() {
+  return Router.current().params;
+}
+
+// - - - - - - - -
+// Main screen
+
+Template.albums.items = function(){
+    return AlbumsColl.find({},{sort:{'t':-1}});
+};
