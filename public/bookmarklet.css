@@ -1,0 +1,68 @@
+/*
+body.akpParent {
+	position: absolute;
+	left: 200px;
+}
+*/
+#akpBookmarklet {
+	display: block;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 200px;
+	height: 100%;
+	border: 1px solid #b7b7b7;
+	background: white;
+	z-index: 1000;
+	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: visible;
+	-webkit-box-shadow: 0 0 12px rgba(0,0,0,0.65);
+	-moz-box-shadow: 0 0 12px rgba(0,0,0,0.65));
+	-ms-box-shadow: 0 0 12px rgba(0,0,0,0.65);
+	-o-box-shadow: 0 0 12px rgba(0,0,0,0.65);
+	box-shadow: 0 0 12px rgba(0,0,0,0.65);
+}
+
+.akpHead {
+	position:relative;
+	z-index: 2;
+	width: 100%;
+	margin: 0;
+	padding:0;
+	height: 49px;
+	border-bottom : 2px solid #555;
+	background: #000;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 32, 77,0.4);
+	-moz-box-shadow: 0 1px 3px rgba(0, 32, 77,0.4);
+	-ms-box-shadow: 0 1px 3px rgba(0, 32, 77,0.4);
+	-o-box-shadow: 0 1px 3px rgba(0, 32, 77,0.4);
+	box-shadow: 0 1px 3px rgba(0, 32, 77,0.4);
+}
+
+.akpBody {
+	border: none;
+}
+
+.akpBody li {
+	overflow: hidden;
+	height: 40px;
+	padding: 5px;
+}
+
+.akpBody li > div {
+	float: left;
+	background-size: cover;
+	width: 40px;
+	height: 40px;
+	margin-right: 5px;
+}
+
+.akpBody li > p {
+	margin: 0;
+	padding: 0;
+}
+
+.akpBody li > a {
+	float: right;
+}
