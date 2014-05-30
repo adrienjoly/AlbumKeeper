@@ -59,10 +59,16 @@ body.akpParent {
 }
 
 .akpBody li > p {
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	margin: 0;
 	padding: 0;
 }
 
 .akpBody li > a {
 	float: right;
+	text-decoration: none;
+	background: white;
+	border: 1px solid black;
+	padding: 5px;
 }

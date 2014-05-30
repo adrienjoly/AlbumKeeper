@@ -63,18 +63,18 @@
 </template>
 
 <template name="addAlbum">
-  <img src="{{params.i}}" style="float:left;">
+  <img id="albumImg" src="{{params.i}}">
   <p>
     URL:
-    <input id="albumUrl" class="input-large" name="url" placeholder="URL of the album" value="{{params.u}}">
+    <input id="albumUrl" name="url" placeholder="URL of the album" value="{{params.u}}">
   </p>
   <p>
     Title:
-    <input id="albumTitle" class="input-large" name="title" placeholder="Title of the album" value="{{params.t}}">
+    <input id="albumTitle" name="title" placeholder="Title of the album" value="{{params.t}}">
   </p>
   <p>
     Artist:
-    <input id="albumArtist" class="input-large" name="artist" placeholder="Artist of the album" value="{{params.a}}">
+    <input id="albumArtist" name="artist" placeholder="Artist of the album" value="{{params.a}}">
   </p>
   <input type="button" class="btn-info submit" value="Add Album"/>
 </template>

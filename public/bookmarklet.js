@@ -55,7 +55,7 @@ console.log("AlbumKeeper bookmarklet");
     return render([
       '<li>',
       '<div class="thumb" style="background-image:url({img})"></div>',
-      '<a href="http://localhost:3000/add?{reqParams}" target="akpAddAlb">+</a>',
+      '<a class="akpToBind" href="http://localhost:3000/add?{reqParams}" target="akpAddAlb">+</a>',
       '<p class="akpTit">{title}</p>',
       '<p class="akpArt">{artist}</p>',
       '</li>',
@@ -85,6 +85,13 @@ console.log("AlbumKeeper bookmarklet");
       console.log("found albums", albums);
       for (var i in albums)
         list.innerHTML += renderAlbum(albums[i]);
+      var toBind = div.getElementsByClassName("akpToBind");
+      for (var i=0; i<toBind.length; ++i) {
+        toBind[i].onclick = function(){
+          var addDlg = window.open(this.href, "akpAddAlb", "height=330,width=510,location=no,menubar=no,resizable=no,scrollbars=no,toolbar=no");
+        };
+        toBind[i].className = toBind[i].className.replace("akpToBind", "");
+      }
     });
   })();
 

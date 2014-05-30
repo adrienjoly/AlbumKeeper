@@ -1,1 +1,6 @@
-/* CSS declarations go here */
+#albumImg {
+	float:left;
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+}
