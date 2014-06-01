@@ -25,11 +25,22 @@ Template.album.events({
 Template.addAlbum.events({
     'click input.submit' : function(event){
         event.preventDefault();
-        var albumUrl = document.getElementById("albumUrl").value;
-        Meteor.call("addAlbum", albumUrl, function(error, albumId){
-          alert('added album with Id ' + albumId);
+        //var albumUrl = document.getElementById("albumUrl").value;
+        var albumData = {};
+        var inputs = document.getElementsByClassName("container")[1].getElementsByTagName("input");
+        Array.prototype.slice.call(inputs).map(function(input){
+          albumData[input.name] = input.value;
         });
-        document.getElementById("albumUrl").value = "";
+        //console.log(albumData);
+        var album = webAlbumDetector.createAlbum(albumData);
+        //console.log(album);
+        Meteor.call("addAlbum", album, function(error, res){
+          res = res || {error: "invalid response"};
+          if (error || res.error)
+            alert(error || res.error);
+          else
+            console.log('added album', res);
+        });
     }
 });
 

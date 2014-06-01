@@ -5,13 +5,11 @@ Meteor.startup(function () {
 });
 
 Meteor.methods({
-  addAlbum: function(url){
-    console.log('Adding Album');
-    var id = AlbumsColl.insert({
-          'url' : url,
-          't': new Date(),
-      });
-    return id;
+  addAlbum: function(album){
+    console.log('Adding Album', album);
+    var res = webAlbumDetector.createAlbum(album).consolidate();
+    console.log('consolidated', res);
+    return !res || res.error ? res : AlbumsColl.insert(res);
   },
   removeAlbum: function(id){
     console.log("remove album", id);

@@ -1,24 +1,28 @@
+<template name="navbar">
+  <div class="navbar navbar-static-top navbar-inverse">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="/">AlbumKeeper</a>
+        <ul class="nav pull-right">
+          <li>
+            {{loginButtons}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+
 <template name="home">
   <head>
     <title>AlbumKeeper</title>
   </head>
   <body>
-      <div class="navbar navbar-static-top navbar-inverse">
-        <div class="navbar-inner">
-          <div class="container">
-            <a class="brand" href="/">AlbumKeeper</a>
-            <ul class="nav pull-right">
-              <li>
-                {{loginButtons}}
-              </li>
-            </ul>
-          </div>
-        </div>
-    </div>
+    {{> navbar}}
     <div class="container" id="main">
       {{> albums}}
-      {{> addAlbum}}
     </div>
+    <a href="{{pathFor 'add'}}">Add an album</a>
   </body>
 </template>
 
@@ -27,18 +31,7 @@
     <title>AlbumKeeper</title>
   </head>
   <body>
-      <div class="navbar navbar-static-top navbar-inverse">
-        <div class="navbar-inner">
-          <div class="container">
-            <a class="brand" href="/">AlbumKeeper</a>
-            <ul class="nav pull-right">
-              <li>
-                {{loginButtons}}
-              </li>
-            </ul>
-          </div>
-        </div>
-    </div>
+    {{> navbar}}
     <div class="container" id="main">
       {{> addAlbum}}
     </div>
@@ -47,23 +40,29 @@
  
 <template name="albums">
   <h2>Albums</h2>
+  <ul>
   {{#each items}}
     {{> album}}
   {{/each}}
+  </ul>
 </template>
  
 <template name="album">
-    <div>
-        <p class="lead">
-            <a class="link" href="{{url}}">{{url}}</a>
-            <a class="btn btn-small btn-danger remove {{#unless currentUser}}disabled{{/unless}}" href="#">
-            	<i class="icon-thumbs-down"></i> Remove {{no}}</a>
-        </p>
-    </div>
+    <li>
+      <a class="link" href="{{url}}">
+        <img src="{{img}}" />
+        <div>
+          <p>{{name}}</p>
+        </div>
+      </a>
+      <!--<a class="btn btn-small btn-danger remove {{#unless currentUser}}disabled{{/unless}}" href="#">
+      <i class="icon-thumbs-down"></i> Remove {{no}}</a>-->
+    </li>
 </template>
 
 <template name="addAlbum">
   <img id="albumImg" src="{{params.i}}">
+  <input type="hidden" name="img" value="{{params.i}}">
   <p>
     URL:
     <input id="albumUrl" name="url" placeholder="URL of the album" value="{{params.u}}">
