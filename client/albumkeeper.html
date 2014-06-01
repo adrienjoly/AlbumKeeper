@@ -40,7 +40,7 @@
  
 <template name="albums">
   <h2>Albums</h2>
-  <ul>
+  <ul class="albums">
   {{#each items}}
     {{> album}}
   {{/each}}
@@ -52,11 +52,11 @@
       <a class="link" href="{{url}}">
         <img src="{{img}}" />
         <div>
-          <p>{{name}}</p>
+          <p class="title">{{title}}</p>
+          <p class="artist">{{artist}}</p>
         </div>
       </a>
-      <!--<a class="btn btn-small btn-danger remove {{#unless currentUser}}disabled{{/unless}}" href="#">
-      <i class="icon-thumbs-down"></i> Remove {{no}}</a>-->
+      <div class="btn btn-small btn-danger remove">Remove</div>
     </li>
 </template>
 

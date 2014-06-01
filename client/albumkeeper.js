@@ -9,13 +9,14 @@ Router.map(function() {
 // Album
 
 Template.album.events({
-  'click a.link': function () {
+  'click a': function () {
     console.log("play", this._id);
     Meteor.call("playAlbum", this._id);
   },
-  'click a.remove': function () {
+  'click .remove': function () {
     console.log("remove", this._id);
-    Meteor.call("removeAlbum", this._id);
+    if (confirm("are you sure?"))
+      Meteor.call("removeAlbum", this._id);
   },
 });
 

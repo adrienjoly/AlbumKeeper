@@ -4,3 +4,59 @@
 	height: 100px;
 	margin-right: 10px;
 }
+
+.albums {
+	list-style: none;
+	background: #eeeeee;
+	padding-top: 4px;
+	padding-left: 4px;
+}
+
+.albums li {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	width:280px;
+	height:320px;
+	padding: 5px;
+	overflow: none;
+	background: white;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	box-sizing: border-box;
+}
+
+.albums li > .remove {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.albums li a {
+	text-decoration: none;
+}
+
+.albums li:hover {
+	opacity: 0.8;
+}
+
+.albums li:hover > .remove {
+	display: block;
+}
+
+.albums li img {
+	width: 100%;
+}
+
+.albums li p {
+	margin: 0;
+}
+
+.albums li p.title {
+	color: black;
+}
+
+.albums li p.artist {
+	color: gray;
+}
