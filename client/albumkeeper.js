@@ -9,6 +9,12 @@ Router.map(function() {
       return AlbumsColl.findOne(this.params._id);
     },
   });
+  this.route('tag', {
+    path: '/tag/:tag',
+    data: function(){
+      return AlbumsColl.findOne({tag:this.params.tag});
+    },
+  });
 });
  
 // - - - - - - - -
@@ -34,7 +40,15 @@ Template.album.events({
 // Population
 
 Template.albums.items = function(){
-    return AlbumsColl.find({},{sort:{'t':-1}});
+    var criteria = {};
+    var tag = Router.current().params.tag;
+    if (tag)
+      criteria.tags = tag;
+    return AlbumsColl.find(criteria, {sort:{'_id':-1}});
+};
+
+Template.tag.params = function(){
+    return Router.current().params;
 };
 
 Template.albumFields.params = function() {

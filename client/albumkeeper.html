@@ -24,6 +24,21 @@
   <body>
     {{> navbar}}
     <div class="container" id="homeContainer">
+      <h2>Albums</h2>
+      {{> albums}}
+    </div>
+    <a href="{{pathFor 'add'}}">Add an album</a>
+  </body>
+</template>
+
+<template name="tag">
+  <head>
+    <title>AlbumKeeper - tag: {{params.tag}}</title>
+  </head>
+  <body>
+    {{> navbar}}
+    <div class="container" id="homeContainer">
+      <h2>tag: {{params.tag}}</h2>
       {{> albums}}
     </div>
     <a href="{{pathFor 'add'}}">Add an album</a>
@@ -59,7 +74,6 @@
 <!-- partials -->
 
 <template name="albums">
-  <h2>Albums</h2>
   <ul class="albums">
   {{#each items}}
     {{> album}}
@@ -79,6 +93,11 @@
       <div class="buttons">
         <div class="btn btn-small edit">Edit</div>
         <div class="btn btn-small btn-danger remove">Remove</div>
+      </div>
+      <div class="tags">
+      {{#each tags}}
+        <a href="/tag/{{this}}">{{this}}</a>
+      {{/each}}
       </div>
     </li>
 </template>

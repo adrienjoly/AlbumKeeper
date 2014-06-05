@@ -64,3 +64,26 @@
 .albums li p.artist {
 	color: gray;
 }
+
+.tags {
+	position: absolute;
+	top: 248px;
+	width: 100%;
+	padding: 0 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.tags a {
+	/*display: inline-block;*/
+	background: blue;
+	color: white;
+	border-radius: 3px;
+	padding: 6px;
+	opacity: 0.6;
+}
+
+.tags a:hover {
+	opacity: 1.0;
+}
