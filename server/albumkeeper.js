@@ -1,7 +1,7 @@
 AlbumsColl = new Meteor.Collection("albums");
  
 Meteor.startup(function () {
-  // code to run on server at startup
+  console.log("AlbumKeeper is running :)");
 });
 
 Meteor.methods({
@@ -11,13 +11,19 @@ Meteor.methods({
     console.log('consolidated', res);
     return !res || res.error ? res : AlbumsColl.insert(res);
   },
+  saveAlbum: function(album){
+    console.log('Saving Album', album);
+    var res = webAlbumDetector.createAlbum(album).consolidate();
+    console.log('consolidated', res);
+    return !res || res.error ? res : AlbumsColl.update({_id:album._id}, {$set:res});
+  },
   removeAlbum: function(id){
     console.log("remove album", id);
-    AlbumsColl.remove(id);
+    return AlbumsColl.remove(id);
   },
   playAlbum: function(id){
     console.log("play album", id);
-    AlbumsColl.update(id, {$inc: {'nbP': 1}});
+    return AlbumsColl.update(id, {$inc: {'nbP': 1}});
   },
 });
 

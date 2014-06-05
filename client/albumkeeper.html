@@ -1,3 +1,5 @@
+<!-- common code -->
+
 <template name="navbar">
   <div class="navbar navbar-static-top navbar-inverse">
     <div class="navbar-inner">
@@ -13,13 +15,15 @@
   </div>
 </template>
 
+<!-- pages -->
+
 <template name="home">
   <head>
     <title>AlbumKeeper</title>
   </head>
   <body>
     {{> navbar}}
-    <div class="container" id="main">
+    <div class="container" id="homeContainer">
       {{> albums}}
     </div>
     <a href="{{pathFor 'add'}}">Add an album</a>
@@ -32,12 +36,28 @@
   </head>
   <body>
     {{> navbar}}
-    <div class="container" id="main">
-      {{> addAlbum}}
+    <div class="container" id="addContainer">
+      {{> albumFields}}
+      <input type="button" class="btn-info submit" value="Add Album"/>
     </div>
   </body>
 </template>
  
+<template name="edit">
+  <head>
+    <title>AlbumKeeper</title>
+  </head>
+  <body>
+    {{> navbar}}
+    <div class="container" id="editContainer">
+      {{> albumFields}}
+      <input type="button" class="btn-info submit" value="Save Album"/>
+    </div>
+  </body>
+</template>
+ 
+<!-- partials -->
+
 <template name="albums">
   <h2>Albums</h2>
   <ul class="albums">
@@ -56,24 +76,26 @@
           <p class="artist">{{artist}}</p>
         </div>
       </a>
-      <div class="btn btn-small btn-danger remove">Remove</div>
+      <div class="buttons">
+        <div class="btn btn-small edit">Edit</div>
+        <div class="btn btn-small btn-danger remove">Remove</div>
+      </div>
     </li>
 </template>
 
-<template name="addAlbum">
-  <img id="albumImg" src="{{params.i}}">
-  <input type="hidden" name="img" value="{{params.i}}">
+<template name="albumFields">
+  <img id="albumImg" src="{{params.i}}{{img}}">
+  <input type="hidden" name="img" value="{{params.i}}{{img}}">
   <p>
     URL:
-    <input id="albumUrl" name="url" placeholder="URL of the album" value="{{params.u}}">
+    <input id="albumUrl" name="url" placeholder="URL of the album" value="{{params.u}}{{url}}">
   </p>
   <p>
     Title:
-    <input id="albumTitle" name="title" placeholder="Title of the album" value="{{params.t}}">
+    <input id="albumTitle" name="title" placeholder="Title of the album" value="{{params.t}}{{title}}">
   </p>
   <p>
     Artist:
-    <input id="albumArtist" name="artist" placeholder="Artist of the album" value="{{params.a}}">
+    <input id="albumArtist" name="artist" placeholder="Artist of the album" value="{{params.a}}{{artist}}">
   </p>
-  <input type="button" class="btn-info submit" value="Add Album"/>
 </template>

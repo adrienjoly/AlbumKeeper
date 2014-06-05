@@ -3,15 +3,25 @@ AlbumsColl = new Meteor.Collection("albums");
 Router.map(function() {
   this.route('home', {path: '/'})
   this.route('add');
+  this.route('edit', {
+    path: '/edit/:_id',
+    data: function(){
+      return AlbumsColl.findOne(this.params._id);
+    },
+  });
 });
  
 // - - - - - - - -
-// Album
+// Events
 
 Template.album.events({
   'click a': function () {
     console.log("play", this._id);
     Meteor.call("playAlbum", this._id);
+  },
+  'click .edit': function () {
+    console.log("edit", this._id);
+    Router.go("/edit/" + this._id);
   },
   'click .remove': function () {
     console.log("remove", this._id);
@@ -21,37 +31,51 @@ Template.album.events({
 });
 
 // - - - - - - - -
-// Add Album screen
-
-Template.addAlbum.events({
-    'click input.submit' : function(event){
-        event.preventDefault();
-        //var albumUrl = document.getElementById("albumUrl").value;
-        var albumData = {};
-        var inputs = document.getElementsByClassName("container")[1].getElementsByTagName("input");
-        Array.prototype.slice.call(inputs).map(function(input){
-          albumData[input.name] = input.value;
-        });
-        //console.log(albumData);
-        var album = webAlbumDetector.createAlbum(albumData);
-        //console.log(album);
-        Meteor.call("addAlbum", album, function(error, res){
-          res = res || {error: "invalid response"};
-          if (error || res.error)
-            alert(error || res.error);
-          else
-            console.log('added album', res);
-        });
-    }
-});
-
-Template.addAlbum.params = function() {
-  return Router.current().params;
-}
-
-// - - - - - - - -
-// Main screen
+// Population
 
 Template.albums.items = function(){
     return AlbumsColl.find({},{sort:{'t':-1}});
 };
+
+Template.albumFields.params = function() {
+  return Router.current().params;
+}
+
+// - - - - - - - -
+// Album Manipulation
+
+function createAlbumFromFields(form){
+  var albumData = {};
+  Array.prototype.slice.call(form.getElementsByTagName("input")).map(function(input){
+    albumData[input.name] = input.value;
+  });
+  return webAlbumDetector.createAlbum(albumData);
+}
+
+function responseHandler(error, res){
+  res = res || {error: "invalid response"};
+  if (error || res.error)
+    alert(error || res.error);
+  else {
+    console.log('returned', res);
+    Router.go("home");
+  }
+}
+
+Template.add.events({
+    'click input.submit' : function(event){
+        event.preventDefault();
+        var album = createAlbumFromFields(document.getElementById("addContainer"));
+        Meteor.call("addAlbum", album, responseHandler);
+    }
+});
+
+Template.edit.events({
+    'click input.submit' : function(event){
+        event.preventDefault();
+        var album = createAlbumFromFields(document.getElementById("editContainer"));
+        album._id = Router.current().params._id;
+        console.log(album._id);
+        Meteor.call("saveAlbum", album, responseHandler);
+    }
+});

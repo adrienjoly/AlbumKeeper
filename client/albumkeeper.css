@@ -26,7 +26,7 @@
 	box-sizing: border-box;
 }
 
-.albums li > .remove {
+.albums li .buttons {
 	display: none;
 	position: absolute;
 	top: 0;
@@ -41,7 +41,7 @@
 	opacity: 0.8;
 }
 
-.albums li:hover > .remove {
+.albums li:hover .buttons {
 	display: block;
 }
 
