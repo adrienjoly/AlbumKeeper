@@ -21,7 +21,7 @@ Router.map(function() {
 // Events
 
 Template.album.events({
-  'click a': function () {
+  'click a.album': function () {
     console.log("play", this._id);
     Meteor.call("playAlbum", this._id);
   },
