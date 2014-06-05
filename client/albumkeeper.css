@@ -12,7 +12,7 @@
 	padding-left: 4px;
 }
 
-.albums li {
+.album {
 	position: relative;
 	display: inline-block;
 	vertical-align: top;
@@ -26,30 +26,34 @@
 	box-sizing: border-box;
 }
 
-.albums li .buttons {
+.album.hidden {
+	display: none;
+}
+
+.album .buttons {
 	display: none;
 	position: absolute;
 	top: 0;
 	right: 0;
 }
 
-.albums li a {
+.album a {
 	text-decoration: none;
 }
 
-.albums li:hover {
+.album:hover {
 	opacity: 0.8;
 }
 
-.albums li:hover .buttons {
+.album:hover .buttons {
 	display: block;
 }
 
-.albums li img {
+.album img {
 	width: 100%;
 }
 
-.albums li p {
+.album p {
 	margin: 0;
 	width: 100%;
 	overflow: hidden;
@@ -57,11 +61,11 @@
 	text-overflow: ellipsis;
 }
 
-.albums li p.title {
+.album p.title {
 	color: black;
 }
 
-.albums li p.artist {
+.album p.artist {
 	color: gray;
 }
 

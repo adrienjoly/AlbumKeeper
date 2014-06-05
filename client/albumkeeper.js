@@ -21,7 +21,7 @@ Router.map(function() {
 // Events
 
 Template.album.events({
-  'click a.album': function () {
+  'click .album > a.link': function () {
     console.log("play", this._id);
     Meteor.call("playAlbum", this._id);
   },
@@ -33,6 +33,22 @@ Template.album.events({
     console.log("remove", this._id);
     if (confirm("are you sure?"))
       Meteor.call("removeAlbum", this._id);
+  },
+});
+
+function toggleClass(el, className, toggle){
+  el.className = (el.className.replace(new RegExp(className, "g"), " ") + (toggle ? " " + className : "")).replace(/\s+/g, " ");
+}
+
+Template.home.events({
+  'keyup #filter': function (event) {
+    var filter = new RegExp(event.target.value, "gi");
+    Array.prototype.slice.call(document.getElementsByClassName("album")).map(function(alb){
+      var elTitle = alb.getElementsByClassName("title")[0];
+      var elArtist = alb.getElementsByClassName("artist")[0];
+      var match = (elTitle.innerHTML + " " + elArtist.innerHTML).match(filter);
+      toggleClass(alb, "hidden", !match);
+    });
   },
 });
 

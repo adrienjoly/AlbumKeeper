@@ -25,9 +25,10 @@
     {{> navbar}}
     <div class="container" id="homeContainer">
       <h2>Albums</h2>
+      Filter: <input id="filter" placeholder="filter">
       {{> albums}}
+      <a href="{{pathFor 'add'}}">Add an album</a>
     </div>
-    <a href="{{pathFor 'add'}}">Add an album</a>
   </body>
 </template>
 
@@ -40,8 +41,8 @@
     <div class="container" id="homeContainer">
       <h2>tag: {{params.tag}}</h2>
       {{> albums}}
+      <a href="{{pathFor 'add'}}">Add an album</a>
     </div>
-    <a href="{{pathFor 'add'}}">Add an album</a>
   </body>
 </template>
 
@@ -82,8 +83,8 @@
 </template>
  
 <template name="album">
-    <li>
-      <a class="album link" href="{{url}}" target="_blank">
+    <li class="album">
+      <a class="link" href="{{url}}" target="_blank">
         <img src="{{img}}" />
         <div>
           <p class="title">{{title}}</p>
