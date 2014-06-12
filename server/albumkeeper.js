@@ -8,6 +8,7 @@ Meteor.methods({
   addAlbum: function(album){
     console.log('Adding Album', album);
     var res = webAlbumDetector.createAlbum(album).consolidate();
+    res.t = new Date();
     console.log('consolidated', res);
     return !res || res.error ? res : AlbumsColl.insert(res);
   },

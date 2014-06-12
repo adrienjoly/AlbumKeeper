@@ -60,7 +60,7 @@ Template.albums.items = function(){
     var tag = Router.current().params.tag;
     if (tag)
       criteria.tags = tag;
-    return AlbumsColl.find(criteria, {sort:{'_id':-1}});
+    return AlbumsColl.find(criteria, {sort: {t: -1}});
 };
 
 Template.tag.params = function(){
