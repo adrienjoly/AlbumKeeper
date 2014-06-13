@@ -27,7 +27,8 @@
       <h2>Albums</h2>
       Filter: <input id="filter" placeholder="filter">
       {{> albums}}
-      <a href="{{pathFor 'add'}}">Add an album</a>
+      <p><a href="{{pathFor 'add'}}">Add an album</a></p>
+      <p>Drag and drop <a href="javascript:(function()%7Bdocument.body.appendChild(document.createElement('script')).src='https://albumkeeper.meteor.com/bookmarklet.js?'+(new%20Date()).getTime();;%7D)();" onclick="alert('please drag and drop this link to your bookmarks bar');">this bookmarklet</a> to the bookmarks bar of your web browser, and activate it on a SoundCloud/GoogleMusic/Bandcamp album page. (more sources are going to be supported soon)</p>
     </div>
   </body>
 </template>
