@@ -3,9 +3,7 @@
   "dependencies": {
     "basePackages": {
       "iron-router": {},
-      "madewith": {
-        "version": "0.0.2"
-      }
+      "madewith": {}
     },
     "packages": {
       "iron-router": {
@@ -15,8 +13,8 @@
       },
       "madewith": {
         "git": "https://github.com/adrienjoly/meteor-madewith.git",
-        "tag": "v0.0.2",
-        "commit": "38461ec1da5963388838fb4c3ec62c0a21183ce3"
+        "tag": "v0.0.3",
+        "commit": "4d8f26210536536ed4946b0ca4c37bd831dc5f8c"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
